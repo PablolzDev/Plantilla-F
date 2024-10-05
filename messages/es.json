@@ -1,0 +1,8 @@
+{
+    "Login": {
+        "title": "Logueo",
+        "email": "Correo",
+        "pasword": "Contraseña",
+        "buttonLogin": "Iniciar"
+    }
+}
