@@ -1,35 +1,30 @@
-import type { Metadata } from 'next';
+"use client";
+
+import React from 'react';
 import StyledComponentsRegistry from '@/components/UI/StyledComponentsRegistry';
 import { Providers } from '@/redux/provider';
 import './globals.css';
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
+import { IntlProvider } from 'react-intl';
 import ProviderSessionAuth from './ProviderSession';
 
-
-export const metadata: Metadata = {
-  title: 'Next.js Base Project',
-  description: 'Created with Next.js 14, TypeScript, and Styled Components',
-};
-
-export default async function RootLayout({
+export default function RootLayoutClient({
   children,
+  locale,
+  messages,
 }: {
   children: React.ReactNode;
+  locale: string;
+  messages: any;
 }) {
-  const locale = await getLocale()
-  const messages = await getMessages()
-
   return (
     <html lang={locale}>
       <body>
         <StyledComponentsRegistry>
-          <NextIntlClientProvider messages={messages}>
-            {children}
+          <IntlProvider locale={locale} messages={messages}>
             <ProviderSessionAuth>
               <Providers>{children}</Providers>
             </ProviderSessionAuth>
-          </NextIntlClientProvider>
+          </IntlProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

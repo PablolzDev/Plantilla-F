@@ -1,3 +1,4 @@
+// provider.tsx
 "use client"
 import { Provider } from 'react-redux'
 import { store } from './store'
@@ -9,6 +10,5 @@ export function Providers ({children}:Props) {
         <Provider store={store}>
             {children}
         </Provider>
-        
     )
 }
